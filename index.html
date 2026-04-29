@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이성찬 | AI 컨설턴트</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', '맑은 고딕', sans-serif;
+      background: #ffffff;
+      color: #333333;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── 헤더 ── */
+    header {
+      background: #1F3864;
+      color: #ffffff;
+      padding: 52px 24px 44px;
+      text-align: center;
+    }
+
+    .profile-circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      margin: 0 auto 20px;
+      overflow: hidden;
+      display: block;
+    }
+
+    .profile-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .identity {
+      font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 360px) {
+      .identity {
+        white-space: normal;
+        word-break: keep-all;
+      }
+    }
+
+    /* ── 본문 ── */
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 44px 24px 64px;
+    }
+
+    /* 자기소개 */
+    .bio {
+      margin-bottom: 44px;
+    }
+
+    .bio p {
+      font-size: 0.95rem;
+      color: #333333;
+      line-height: 1.95;
+      word-break: keep-all;
+    }
+
+    /* 섹션 레이블 */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #1F3864;
+      border-bottom: 2px solid #1F3864;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* 경력 */
+    .career-section {
+      margin-bottom: 44px;
+    }
+
+    .career-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .career-item {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 0 16px;
+      align-items: start;
+    }
+
+    .career-year {
+      font-size: 0.77rem;
+      color: #1F3864;
+      font-weight: 600;
+      line-height: 1.55;
+      padding-top: 2px;
+    }
+
+    .career-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333333;
+    }
+
+    .career-role {
+      font-size: 0.85rem;
+      color: #666666;
+      margin-top: 2px;
+    }
+
+    .career-summary {
+      font-size: 0.84rem;
+      color: #444444;
+      margin-top: 5px;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    /* 연락하기 */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .btn-group {
+        flex-direction: row;
+      }
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover,
+    .btn:active {
+      opacity: 0.82;
+    }
+
+    .btn-email {
+      background: #1F3864;
+      color: #ffffff;
+    }
+
+    .btn-phone {
+      background: #333333;
+      color: #ffffff;
+    }
+
+    /* 복사 알림 토스트 */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #333333;
+      color: #ffffff;
+      padding: 11px 22px;
+      border-radius: 22px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      opacity: 0;
+      transition: opacity 0.22s, transform 0.22s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="profile-circle"><img src="사진프로필.png" alt="이성찬 프로필 사진"></div>
+  <div class="identity">이성찬 · AI컨설턴트 · (주)상상우리</div>
+</header>
+
+<main>
+
+  <section class="bio">
+    <p>
+      삼성전자에서 27년간 전화교환기 소프트웨어를 개발한 현장 중심 엔지니어입니다.<br>
+      이후 IoT · 임베디드 · 풀스택 웹 개발 · AI 외주 기술관리까지 다양한 실전 경험을 쌓았습니다.<br>
+      현재 (주)상상우리 AI컨설턴트로서 기업의 AI 도입과 디지털 전환을 지원합니다.<br>
+      Python · React · LangGraph 등 최신 기술을 꾸준히 학습하며 현장에 적용하고 있습니다.<br>
+      강연 · 프로젝트 협업 · 네트워킹 문의를 언제든지 환영합니다.
+    </p>
+  </section>
+
+  <section class="career-section">
+    <div class="section-label">경력</div>
+    <div class="career-list">
+
+      <div class="career-item">
+        <div class="career-year">2026.04<br>~ 현재</div>
+        <div class="career-body">
+          <div class="career-company">(주)상상우리</div>
+          <div class="career-role">AI컨설턴트</div>
+          <div class="career-summary">AI 도입 전략 수립 및 기업 디지털 전환 컨설팅</div>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">2023.10<br>~ 2025.04</div>
+        <div class="career-body">
+          <div class="career-company">(주)에스알디코리아</div>
+          <div class="career-role">수석연구원</div>
+          <div class="career-summary">풀스택 웹 개발(React · Spring-boot) 및 AI 외주 기술 관리</div>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">1984.01<br>~ 2010.12</div>
+        <div class="career-body">
+          <div class="career-company">삼성전자</div>
+          <div class="career-role">부장</div>
+          <div class="career-summary">전화교환기 SW 개발 총괄 27년 · Software Engineering Lab장 역임</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">연락하기</div>
+    <div class="btn-group">
+      <a class="btn btn-email" href="mailto:davidri37@gmail.com">이메일 보내기</a>
+      <button class="btn btn-phone" onclick="copyPhone()">전화 걸기</button>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast">010-2908-9780 복사됨</div>
+
+<script>
+function copyPhone() {
+  var number = '010-2908-9780';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(number).then(showToast).catch(function() {
+      fallbackCopy(number);
+    });
+  } else {
+    fallbackCopy(number);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.top = '-9999px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); showToast(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+function showToast() {
+  var t = document.getElementById('toast');
+  t.classList.add('visible');
+  setTimeout(function() { t.classList.remove('visible'); }, 2500);
+}
+</script>
+
+</body>
+</html>

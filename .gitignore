@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# 개인 문서 (이력서 원본은 저장소에 포함하지 않음)
+*.docx
