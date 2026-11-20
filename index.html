@@ -763,15 +763,15 @@ function makeQRSvg(text){
   function applyFormat(grid, maskId){
     const fmt = formatBits(maskId);
     for(let i = 0; i < 6; i++){
-      const b = (fmt >> i) & 1;
+      const b = (fmt >> (14 - i)) & 1;
       grid[8][i] = b; grid[size - 1 - i][8] = b;
     }
-    grid[8][7] = (fmt >> 6) & 1; grid[size - 7][8] = (fmt >> 6) & 1;
+    grid[8][7] = (fmt >> 8) & 1; grid[size - 7][8] = (fmt >> 8) & 1;
     grid[8][8] = (fmt >> 7) & 1; grid[8][size - 8] = (fmt >> 7) & 1;
-    grid[7][8] = (fmt >> 8) & 1; grid[8][size - 7] = (fmt >> 8) & 1;
-    for(let i = 9; i < 15; i++){
+    grid[7][8] = (fmt >> 6) & 1; grid[8][size - 7] = (fmt >> 6) & 1;
+    for(let i = 0; i < 6; i++){
       const b = (fmt >> i) & 1;
-      grid[14 - i][8] = b; grid[8][size - 15 + i] = b;
+      grid[i][8] = b; grid[8][size - 1 - i] = b;
     }
   }
   function penalty(grid){
