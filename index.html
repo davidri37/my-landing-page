@@ -256,66 +256,6 @@ body{
 .contact-btn small{display:block;font-size:12px;line-height:16px;opacity:.72;font-weight:400;margin-top:2px}
 .contact-btn .txt{text-align:left}
 
-.qr-card{
-  margin-top:12px;padding:16px;
-  background:var(--paper-card);border:1px solid var(--line);border-radius:12px;
-  box-shadow:var(--shadow-sm);
-  display:flex;align-items:center;gap:16px;
-}
-.qr-box{
-  width:80px;height:80px;padding:6px;flex-shrink:0;
-  background:#ffffff;border:1px solid var(--line);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:border-color 150ms var(--ease);
-}
-.qr-box:hover{border-color:var(--ink)}
-.qr-box svg{width:100%;height:100%;display:block}
-.qr-meta{flex:1;min-width:0}
-.qr-title{font-size:14px;line-height:20px;font-weight:600;color:var(--ink)}
-.qr-desc{font-size:12px;line-height:16px;color:var(--ink-muted);margin-top:2px}
-.qr-url{
-  display:block;margin-top:4px;
-  font-family:var(--mono);font-size:12px;line-height:16px;color:var(--ink-soft);
-  word-break:break-all;
-}
-.qr-actions{display:flex;gap:8px;flex-shrink:0}
-.qr-btn{
-  padding:8px 12px;border-radius:8px;cursor:pointer;
-  background:var(--paper);color:var(--ink);border:1px solid var(--line-strong);
-  font-family:var(--sans-kr);font-size:12px;line-height:16px;font-weight:500;
-  transition:background-color 150ms var(--ease),border-color 150ms var(--ease),transform 120ms var(--ease);
-}
-.qr-btn:hover{background:var(--paper-raised);border-color:var(--ink)}
-.qr-btn:active{transform:scale(0.98)}
-
-.qr-modal{
-  position:fixed;inset:0;z-index:60;
-  background:rgba(29,42,68,.48);
-  display:flex;align-items:center;justify-content:center;padding:24px;
-  opacity:0;pointer-events:none;
-  transition:opacity 180ms var(--ease);
-}
-.qr-modal.open{opacity:1;pointer-events:auto}
-.qr-dialog{
-  background:var(--paper-card);border:1px solid var(--line-strong);border-radius:16px;
-  padding:24px;width:100%;max-width:320px;text-align:center;
-  box-shadow:0 16px 40px rgba(29,42,68,.20);
-  transform:translateY(8px);transition:transform 200ms var(--ease);
-}
-.qr-modal.open .qr-dialog{transform:translateY(0)}
-.qr-dialog-title{font-family:var(--serif-kr);font-size:18px;line-height:24px;font-weight:600;color:var(--ink)}
-.qr-dialog-sub{font-size:13px;line-height:20px;color:var(--ink-muted);margin-top:4px}
-.qr-dialog-svg{
-  margin:16px auto;width:220px;height:220px;padding:12px;
-  background:#ffffff;border:1px solid var(--line);border-radius:12px;
-}
-.qr-dialog-svg svg{width:100%;height:100%;display:block}
-.qr-dialog-url{
-  font-family:var(--mono);font-size:12px;line-height:16px;color:var(--ink-soft);
-  word-break:break-all;margin-bottom:16px;
-}
-.qr-dialog-btns{display:flex;gap:8px;justify-content:center}
-
 .toast{
   position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(12px);
   background:var(--ink);color:#f7f4ee;padding:12px 20px;border-radius:8px;
@@ -365,8 +305,6 @@ body{
   .did-meta{flex-direction:column;gap:2px}
   .contact{flex-direction:column}
   .contact-btn{min-width:0}
-  .qr-card{flex-wrap:wrap}
-  .qr-actions{width:100%;justify-content:flex-end}
 }
 </style>
 </head>
@@ -510,47 +448,19 @@ body{
 
     <div class="contact rise d6" id="contact"></div>
 
-    <div class="qr-card rise d6" id="qr-card">
-      <button type="button" class="qr-box" id="qr-open" aria-label="QR 코드 크게 보기"></button>
-      <div class="qr-meta">
-        <p class="qr-title">모바일 명함 QR</p>
-        <p class="qr-desc">카메라로 스캔해 이 페이지 열기</p>
-        <span class="qr-url" id="qr-url"></span>
-      </div>
-      <div class="qr-actions">
-        <button type="button" class="qr-btn" id="qr-copy">링크 복사</button>
-        <button type="button" class="qr-btn" id="qr-zoom">크게 보기</button>
-      </div>
-    </div>
-
     <p class="footer-note">© 2026 이성찬 프로 · 상상우리 AI 컨설턴트</p>
   </section>
 </main>
 
-<div class="qr-modal" id="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-dialog-title">
-  <div class="qr-dialog">
-    <h3 class="qr-dialog-title" id="qr-dialog-title">이성찬 프로 모바일 명함</h3>
-    <p class="qr-dialog-sub">스마트폰 카메라로 스캔하세요</p>
-    <div class="qr-dialog-svg" id="qr-dialog-svg"></div>
-    <p class="qr-dialog-url" id="qr-dialog-url"></p>
-    <div class="qr-dialog-btns">
-      <button type="button" class="qr-btn" id="qr-modal-copy">링크 복사</button>
-      <button type="button" class="qr-btn" id="qr-modal-close">닫기</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-/* ===== 연락처 및 URL 설정 (여기만 수정하면 됩니다) ===== */
+/* ===== 연락처 설정 (여기만 수정하면 됩니다) ===== */
 const CONTACT = {
   email: "davidri37@gmail.com",
-  phone: "010-2908-9780",
-  url: "" /* 비워두면 접속 주소(로컬 파일 시 GitHub Pages 기본 주소) 사용 */
+  phone: "010-2908-9780"
 };
-const DEFAULT_SITE_URL = "https://davidri37.github.io/my-landing-page/";
-/* ===================================================== */
+/* ============================================== */
 
 const ICONS = {
   mail: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
@@ -605,234 +515,6 @@ if(CONTACT.phone){
   box.appendChild(makeBtn({icon: ICONS.phone, main:"전화번호 준비 중", sub:"곧 안내드리겠습니다", alt:true,
     onClick: function(){ showToast("전화번호는 준비 중입니다."); }}));
 }
-
-/* ===== 내장 QR 코드 생성기 (ISO/IEC 18004, Byte mode, ECC M, Ver 1-6) ===== */
-function makeQRSvg(text){
-  const bytes = Array.from(new TextEncoder().encode(text));
-  // ECC-M specs: [version, totalDataBytes, ecBytesPerBlock, numBlocks, alignmentCenters]
-  const SPECS = [
-    [1, 16, 10, 1, []],
-    [2, 28, 16, 1, [6, 18]],
-    [3, 44, 26, 1, [6, 22]],
-    [4, 64, 18, 2, [6, 26]],
-    [5, 86, 24, 2, [6, 30]],
-    [6, 108, 16, 4, [6, 34]]
-  ];
-  const spec = SPECS.find(s => bytes.length <= s[1] - 2);
-  if(!spec) return "";
-  const [ver, totalData, ecLen, numBlocks, alignPos] = spec;
-  const size = ver * 4 + 17;
-
-  // GF(256)
-  const EXP = new Uint8Array(512), LOG = new Uint8Array(256);
-  let x = 1;
-  for(let i = 0; i < 255; i++){
-    EXP[i] = x; LOG[x] = i;
-    x <<= 1; if(x & 256) x ^= 0x11d;
-  }
-  for(let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
-  const gfMul = (a, b) => (a === 0 || b === 0) ? 0 : EXP[LOG[a] + LOG[b]];
-  function rsGenPoly(deg){
-    let poly = [1];
-    for(let i = 0; i < deg; i++){
-      const next = new Array(poly.length + 1).fill(0);
-      for(let j = 0; j < poly.length; j++){
-        next[j] ^= poly[j];
-        next[j + 1] ^= gfMul(poly[j], EXP[i]);
-      }
-      poly = next;
-    }
-    return poly;
-  }
-  function rsRemainder(data, ecCount){
-    const gen = rsGenPoly(ecCount);
-    const res = new Array(ecCount).fill(0);
-    for(const b of data){
-      const factor = b ^ res[0];
-      res.shift(); res.push(0);
-      for(let i = 0; i < ecCount; i++) res[i] ^= gfMul(gen[i + 1], factor);
-    }
-    return res;
-  }
-
-  // Encode data bits (Byte mode: 0100 + 8-bit length + bytes + terminator + pad)
-  const bits = [];
-  const pushBits = (val, len) => { for(let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1); };
-  pushBits(4, 4);
-  pushBits(bytes.length, 8);
-  for(const b of bytes) pushBits(b, 8);
-  for(let i = 0; i < 4 && bits.length < totalData * 8; i++) bits.push(0);
-  while(bits.length % 8 !== 0) bits.push(0);
-  const dataCW = [];
-  for(let i = 0; i < bits.length; i += 8){
-    let b = 0;
-    for(let j = 0; j < 8; j++) b = (b << 1) | bits[i + j];
-    dataCW.push(b);
-  }
-  let pad = 0;
-  while(dataCW.length < totalData) dataCW.push((pad++ & 1) ? 0x11 : 0xec);
-
-  // Split into blocks & interleave
-  const blockSize = Math.floor(totalData / numBlocks);
-  const blocks = [], ecBlocks = [];
-  for(let b = 0; b < numBlocks; b++){
-    const slice = dataCW.slice(b * blockSize, (b + 1) * blockSize);
-    blocks.push(slice);
-    ecBlocks.push(rsRemainder(slice, ecLen));
-  }
-  const codewords = [];
-  for(let i = 0; i < blockSize; i++) for(let b = 0; b < numBlocks; b++) codewords.push(blocks[b][i]);
-  for(let i = 0; i < ecLen; i++) for(let b = 0; b < numBlocks; b++) codewords.push(ecBlocks[b][i]);
-
-  // Matrix setup
-  const m = Array.from({length: size}, () => new Int8Array(size).fill(-1));
-  const isFn = Array.from({length: size}, () => new Uint8Array(size));
-  const setMod = (r, c, val, fn) => {
-    if(r < 0 || r >= size || c < 0 || c >= size) return;
-    m[r][c] = val;
-    if(fn) isFn[r][c] = 1;
-  };
-  function drawFinder(r, c){
-    for(let dr = -1; dr <= 7; dr++) for(let dc = -1; dc <= 7; dc++){
-      const inside = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
-      const dark = inside && (dr === 0 || dr === 6 || dc === 0 || dc === 6 || (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4));
-      setMod(r + dr, c + dc, dark ? 1 : 0, true);
-    }
-  }
-  drawFinder(0, 0);
-  drawFinder(0, size - 7);
-  drawFinder(size - 7, 0);
-  for(let i = 8; i < size - 8; i++){
-    setMod(6, i, i % 2 === 0 ? 1 : 0, true);
-    setMod(i, 6, i % 2 === 0 ? 1 : 0, true);
-  }
-  setMod(size - 8, 8, 1, true);
-  for(const r of alignPos) for(const c of alignPos){
-    if(isFn[r][c]) continue;
-    for(let dr = -2; dr <= 2; dr++) for(let dc = -2; dc <= 2; dc++){
-      const dark = Math.max(Math.abs(dr), Math.abs(dc)) !== 1;
-      setMod(r + dr, c + dc, dark ? 1 : 0, true);
-    }
-  }
-  // Reserve format info cells
-  for(let i = 0; i < 9; i++){
-    if(i !== 6){ isFn[8][i] = 1; isFn[i][8] = 1; }
-  }
-  for(let i = 0; i < 8; i++){
-    isFn[8][size - 1 - i] = 1;
-    if(i < 7) isFn[size - 1 - i][8] = 1;
-  }
-
-  // Place data bits (zigzag)
-  let bitIdx = 0;
-  const totalBits = codewords.length * 8;
-  for(let right = size - 1; right >= 1; right -= 2){
-    if(right === 6) right = 5;
-    for(let vert = 0; vert < size; vert++){
-      for(let j = 0; j < 2; j++){
-        const c = right - j;
-        const upward = ((right + 1) & 2) === 0;
-        const r = upward ? size - 1 - vert : vert;
-        if(!isFn[r][c]){
-          const bit = bitIdx < totalBits ? ((codewords[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1) : 0;
-          m[r][c] = bit;
-          bitIdx++;
-        }
-      }
-    }
-  }
-
-  // Try masks 0..7 and pick lowest penalty
-  const maskFn = [
-    (r, c) => (r + c) % 2 === 0,
-    (r, c) => r % 2 === 0,
-    (r, c) => c % 3 === 0,
-    (r, c) => (r + c) % 3 === 0,
-    (r, c) => (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0,
-    (r, c) => ((r * c) % 2 + (r * c) % 3) === 0,
-    (r, c) => (((r * c) % 2 + (r * c) % 3) % 2) === 0,
-    (r, c) => (((r + c) % 2 + (r * c) % 3) % 2) === 0
-  ];
-  function formatBits(maskId){
-    // ECC M = 00
-    const data = (0 << 3) | maskId;
-    let rem = data << 10;
-    for(let i = 4; i >= 0; i--) if(rem & (1 << (i + 10))) rem ^= 0x537 << i;
-    return ((data << 10) | rem) ^ 0x5412;
-  }
-  function applyFormat(grid, maskId){
-    const fmt = formatBits(maskId);
-    for(let i = 0; i < 6; i++){
-      const b = (fmt >> (14 - i)) & 1;
-      grid[8][i] = b; grid[size - 1 - i][8] = b;
-    }
-    grid[8][7] = (fmt >> 8) & 1; grid[size - 7][8] = (fmt >> 8) & 1;
-    grid[8][8] = (fmt >> 7) & 1; grid[8][size - 8] = (fmt >> 7) & 1;
-    grid[7][8] = (fmt >> 6) & 1; grid[8][size - 7] = (fmt >> 6) & 1;
-    for(let i = 0; i < 6; i++){
-      const b = (fmt >> i) & 1;
-      grid[i][8] = b; grid[8][size - 1 - i] = b;
-    }
-  }
-  function penalty(grid){
-    let p = 0;
-    for(let r = 0; r < size; r++){
-      let run = 1;
-      for(let c = 1; c < size; c++){
-        if(grid[r][c] === grid[r][c - 1]) run++;
-        else { if(run >= 5) p += 3 + (run - 5); run = 1; }
-      }
-      if(run >= 5) p += 3 + (run - 5);
-    }
-    for(let c = 0; c < size; c++){
-      let run = 1;
-      for(let r = 1; r < size; r++){
-        if(grid[r][c] === grid[r - 1][c]) run++;
-        else { if(run >= 5) p += 3 + (run - 5); run = 1; }
-      }
-      if(run >= 5) p += 3 + (run - 5);
-    }
-    for(let r = 0; r < size - 1; r++) for(let c = 0; c < size - 1; c++){
-      const v = grid[r][c];
-      if(v === grid[r][c + 1] && v === grid[r + 1][c] && v === grid[r + 1][c + 1]) p += 3;
-    }
-    return p;
-  }
-
-  let bestGrid = null, bestScore = Infinity;
-  for(let k = 0; k < 8; k++){
-    const g = m.map((row, r) => row.map((v, c) => isFn[r][c] ? v : (v ^ (maskFn[k](r, c) ? 1 : 0))));
-    applyFormat(g, k);
-    const sc = penalty(g);
-    if(sc < bestScore){ bestScore = sc; bestGrid = g; }
-  }
-
-  let rects = "";
-  for(let r = 0; r < size; r++){
-    for(let c = 0; c < size; c++){
-      if(bestGrid[r][c]) rects += '<rect x="' + c + '" y="' + r + '" width="1" height="1"/>';
-    }
-  }
-  return '<svg viewBox="0 0 ' + size + ' ' + size + '" shape-rendering="crispEdges" role="img" aria-label="페이지 QR 코드"><rect width="' + size + '" height="' + size + '" fill="#ffffff"/><g fill="#1d2a44">' + rects + '</g></svg>';
-}
-
-const pageUrl = CONTACT.url || (location.protocol.startsWith("http") ? location.href.split("#")[0] : DEFAULT_SITE_URL);
-const qrSvg = makeQRSvg(pageUrl);
-document.getElementById("qr-open").innerHTML = qrSvg;
-document.getElementById("qr-url").textContent = pageUrl;
-document.getElementById("qr-dialog-svg").innerHTML = qrSvg;
-document.getElementById("qr-dialog-url").textContent = pageUrl;
-
-const qrModal = document.getElementById("qr-modal");
-const openQr = () => qrModal.classList.add("open");
-const closeQr = () => qrModal.classList.remove("open");
-document.getElementById("qr-open").addEventListener("click", openQr);
-document.getElementById("qr-zoom").addEventListener("click", openQr);
-document.getElementById("qr-modal-close").addEventListener("click", closeQr);
-qrModal.addEventListener("click", (e) => { if(e.target === qrModal) closeQr(); });
-document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeQr(); });
-document.getElementById("qr-copy").addEventListener("click", () => copyText(pageUrl, "페이지 링크가"));
-document.getElementById("qr-modal-copy").addEventListener("click", () => copyText(pageUrl, "페이지 링크가"));
 </script>
 </body>
 </html>
